@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     pug = require('gulp-pug'),
     browserSync = require('browser-sync'),
     rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
     reload  = browserSync.reload;
 
 gulp.task('pug', function(){
@@ -9,6 +10,12 @@ gulp.task('pug', function(){
     .pipe(pug())
     .pipe(rename('index.html'))
     .pipe(gulp.dest('./'))
+})
+
+gulp.task('sass', function(){
+  return gulp.src('src/sass/*.sass')
+    .pipe(sass())
+    .pipe(gulp.dest('css'))
 })
 
 gulp.task('browserSync', ['pug'], function(){
@@ -20,6 +27,6 @@ gulp.task('browserSync', ['pug'], function(){
   });
 })
 
-gulp.task('default',['pug', 'browserSync'], function(){
-  gulp.watch('src/*.pug',[reload]);
+gulp.task('default',['pug', 'sass', 'browserSync'], function(){
+  gulp.watch(['src/*.pug', 'src/sass/*.sass'],[reload]);
 })

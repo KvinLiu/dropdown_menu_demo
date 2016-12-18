@@ -2,6 +2,17 @@ doctype
 html(lang='en')
   head
     meta(charset='utf-8')
-    title
+    link(rel="stylesheet", href="css/main.css", attr)
+    title Drop-down menu animation Demo
   body
-    
+    nav: ul
+      - var i = 0;
+        while (i++ < 4)
+          li sytle #{i}
+            ul(class="drop-menu menu-" + i)
+              li uno
+              li dos
+              li tres
+              li cuatro
+              li cinco
+              li seis
